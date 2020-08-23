@@ -12,19 +12,21 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ObjectSize {
 
+    private static final int countSize = 1000;
+
     private static final Logger log = LoggerFactory.getLogger(ObjectSize.class);
 
-    public static void calculateSize() throws Exception {
+    public static void calculateSize() {
         log.info(VM.current().details());
-        int[] intArray = new int[1000];
-        Integer[] integerArray = new Integer[1000];
+        int[] intArray = new int[countSize];
+        Integer[] integerArray = new Integer[countSize];
         ArrayList<Integer> arrayList = new ArrayList<>();
         LinkedList<Integer> linkedList = new LinkedList<>();
         HashSet<Integer> hashSet = new HashSet<>();
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         ConcurrentHashMap<Integer, Integer> concurrentHashMap = new ConcurrentHashMap<>();
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < countSize; i++) {
             Integer io = i;
             intArray[i] = io;
             integerArray[i] = io;
@@ -41,34 +43,34 @@ public class ObjectSize {
         log.info(">> new Object()");
         log.info(GraphLayout.parseInstance(new Object()).toPrintable());
         log.info("====================================================================");
-        log.info(">> new Integer(10)");
-        log.info(GraphLayout.parseInstance(new Integer(10)).toPrintable());
+        log.info(">> new Integer(" + countSize + ")");
+        log.info(GraphLayout.parseInstance(new Integer(countSize)).toPrintable());
         log.info("====================================================================");
-        log.info(">> new Long(10)");
-        log.info(GraphLayout.parseInstance(new Long(10)).toPrintable());
+        log.info(">> new Long(" + countSize + ")");
+        log.info(GraphLayout.parseInstance(new Long(countSize)).toPrintable());
         log.info("====================================================================");
-        log.info(">> new int[1000]");
+        log.info(">> new int[" + countSize + "]");
         log.info(GraphLayout.parseInstance((Object) intArray).toFootprint());
         log.info("====================================================================");
-        log.info(">> new Integer[1000]");
+        log.info(">> new Integer[" + countSize + "]");
         log.info(GraphLayout.parseInstance((Object) integerArray).toFootprint());
         log.info("====================================================================");
-        log.info(">> new ArrayList<Integer>(1000)");
+        log.info(">> new ArrayList<Integer>(" + 1000 + ")");
         log.info(GraphLayout.parseInstance(arrayList).toFootprint());
         log.info("====================================================================");
-        log.info(">> new LinkedList<Integer>(1000)");
+        log.info(">> new LinkedList<Integer>(" + 1000 + ")");
         log.info(GraphLayout.parseInstance(linkedList).toFootprint());
         log.info("====================================================================");
-        log.info(">> new HashSet<Integer>(1000)");
+        log.info(">> new HashSet<Integer>(" + 1000 + ")");
         log.info(GraphLayout.parseInstance(hashSet).toFootprint());
         log.info("====================================================================");
-        log.info(">> new HashMap<Integer>(1000)");
+        log.info(">> new HashMap<Integer>(" + 1000 + ")");
         log.info(GraphLayout.parseInstance(hashMap).toFootprint());
         log.info("====================================================================");
-        log.info(">> new ConcurrentHashMap<Integer>(1000)");
+        log.info(">> new ConcurrentHashMap<Integer>(" + 1000 + ")");
         log.info(GraphLayout.parseInstance(concurrentHashMap).toFootprint());
         log.info("====================================================================");
-        log.info(">> new ArrayList<Integer>(1000).stream()");
+        log.info(">> new ArrayList<Integer>(" + 1000 + ")" + ".stream()");
         log.info(GraphLayout.parseInstance(arrayList.stream()).toFootprint());
         log.info("====================================================================");
         log.info(">> new String(\"Hello, World!\")");
