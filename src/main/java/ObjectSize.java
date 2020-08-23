@@ -18,7 +18,9 @@ public class ObjectSize {
 
     public static void calculateSize() {
         log.info(VM.current().details());
+
         int[] intArray = new int[countSize];
+        char[] charString = new char[]{'a'};
         Integer[] integerArray = new Integer[countSize];
         ArrayList<Integer> arrayList = new ArrayList<>();
         LinkedList<Integer> linkedList = new LinkedList<>();
@@ -73,8 +75,29 @@ public class ObjectSize {
         log.info(">> new ArrayList<Integer>(" + countSize + ")" + ".stream()");
         log.info(GraphLayout.parseInstance(arrayList.stream()).toFootprint());
         log.info("====================================================================");
-        log.info(">> new String(\"Hello, World!\")");
-        log.info(GraphLayout.parseInstance("Hello, World!").toPrintable());
+
+        log.info("====================================================================");
+        log.info(">> new char");
+        log.info(GraphLayout.parseInstance(charString).toPrintable());
+
+        log.info("====================================================================");
+        log.info(">> new String()");
+        log.info(GraphLayout.parseInstance(new String()).toPrintable());
+        log.info("====================================================================");
+        log.info(">> new String(a)");
+        log.info(GraphLayout.parseInstance("a").toPrintable());
+        log.info("====================================================================");
+        log.info(">> new String(aaaa) 4 items");
+        log.info(GraphLayout.parseInstance("aaaa").toPrintable());
+        log.info("====================================================================");
+        log.info(">> new String(a) 5 items");
+        log.info(GraphLayout.parseInstance("aaaaa").toPrintable());
+        log.info("====================================================================");
+
+        log.info(">> Custom objects:");
+        log.info("====================================================================");
+        log.info(">> new UserAccount");
+        log.info(GraphLayout.parseInstance(new UserAccount(1, 100, 30)).toPrintable());
         log.info("====================================================================");
     }
 }
